@@ -4,17 +4,18 @@
  */
 
 $(document).ready(function() {
-    
-    function fadeChain(id = 1){
-        if ($(".fadeIn"+id).length > 0){
-            var duration = 400 * id;
-            $(".fadeIn"+id).fadeIn(duration);
-            var new_id = id+1;
+    fadeChain();
+});
+
+function fadeChain(id = 1, limit = null){
+    if ($(".fadeIn"+id).length > 0){
+        var duration = 400 * id;
+        $(".fadeIn"+id).fadeIn(duration);
+        var new_id = id+1;
+        if(limit === null || new_id <= limit){
             if ($(".fadeIn"+new_id).length > 0){
-                fadeChain(new_id);
+                fadeChain(new_id, limit);
             }
         }
     }
-    fadeChain();
-    
-});
+}
